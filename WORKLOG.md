@@ -25,3 +25,9 @@
 ### 2026-11-07 — Repo setup
 - Did: initialised git, added .gitignore (data/, index/, runs/, .env excluded), linked to github.com/Udai30/guarded-text-to-sql; created main, dev and test branches from the initial commit. Working branch: test.
 - Next: M0.
+
+### 2026-11-07 — Milestone M0: Setup
+- Did: uv package `sqlagent` (Python 3.12, src layout); Typer CLI with `version`, `config` and stubs for db setup, index build, ask, analyze, eval, bird run, mcp serve, ui (exit 2, name their milestone); `configs/default.yaml` + pydantic settings loader (extra keys rejected, secrets only from env); `.env.example`; `docker-compose.yml` (Postgres 16, bound to 127.0.0.1, healthcheck); GitHub Actions CI with a Postgres 16 service (ruff, ruff format, mypy --strict, pytest, CLI help).
+- Tests: 16/16 passed locally (incl. DB reachability test against the Docker container); ruff and mypy clean; `pg_isready` accepting connections; `uv run sqlagent --help` OK.
+- Problems and fixes: none. CI result to be confirmed on GitHub after push.
+- Next: M1 (load AdventureWorks, roles, `guarded_execute()`).

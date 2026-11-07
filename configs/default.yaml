@@ -1,0 +1,49 @@
+# Default configuration. Secrets (passwords, API keys) come from .env, never from here.
+
+database:
+  name: adventureworks
+  host: localhost
+  port: 5432
+  # Runtime login role (created in M1). The owner role is used only by `sqlagent db setup`.
+  app_user: sqlagent_app
+  owner_user: sqlagent_owner
+
+guards:
+  row_limit: 1000
+  statement_timeout: 5s
+  # EXPLAIN (FORMAT JSON) thresholds; tuned in M1 against real plans.
+  max_estimated_cost: 1000000
+  max_estimated_rows: 1000000
+
+scoping:
+  # Tables rewritten in code and protected by RLS for sqlagent_rep (M2).
+  rep_scoped_tables:
+    - sales.salesorderheader
+    - sales.salesorderdetail
+    - sales.store
+    - sales.customer
+    - sales.salespersonquotahistory
+  manager_only_tables:
+    - humanresources.employeepayhistory
+
+llm:
+  provider: ollama
+  base_url: http://localhost:11434
+  model: qwen2.5-coder:7b
+  fallback_model: qwen2.5-coder:3b
+  embedding_model: nomic-embed-text
+  temperature: 0.0
+
+agent:
+  max_tool_calls: 10
+  max_failed_runs: 3
+  max_seconds: 60
+  max_repairs: 3
+
+paths:
+  data_dir: data
+  index_dir: index
+  runs_dir: runs
+  knowledge_dir: knowledge
+  eval_dir: eval
+  reports_dir: reports

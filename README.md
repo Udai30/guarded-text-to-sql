@@ -47,6 +47,7 @@ A public, inspectable version of the text-to-SQL skills from my work products, w
 
 ## Quick start (after build)
 ```bash
+cp .env.example .env            # then set the passwords
 uv sync
 ollama pull qwen2.5-coder:7b
 docker compose up -d              # Postgres 16 with AdventureWorks loaded
